@@ -1,0 +1,29 @@
+﻿@model BooksListViewModel
+
+<h1>Books</h1>
+
+@foreach (Book b in Model.Books)
+{
+    <h2>Book ID: @b.BookId</h2>
+    <h3>@b.Title</h3>
+
+    <ul>
+        <li>Book Author: @b.Author</li>
+        <li>Publisher: @b.Publisher</li>
+        <li>ISBN: @b.Isbn</li>
+        <li>Classification: @b.Classification</li>
+        <li>Category: @b.Category</li>
+        <li>Page Count: @b.PageCount</li>
+        <li>Price: @b.Price</li>
+    </ul>
+}
+
+@if (Model.PaginationInfo.TotalNumPages > 1)
+{
+    <div>
+        @for (int i = 1; i <= Model.PaginationInfo.TotalNumPages; i++)
+        {
+            <a href="@Url.Action("Index", new { pageNum = i })">@i</a>
+        }
+    </div>
+}
